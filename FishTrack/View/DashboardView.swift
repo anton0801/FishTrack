@@ -1,4 +1,6 @@
 import SwiftUI
+import WebKit
+import Combine
 
 struct DashboardView: View {
     @State private var catches: [Catch] = UserDefaults.standard.loadCatches()
@@ -26,26 +28,25 @@ struct DashboardView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                LinearGradient(gradient: Gradient(colors: [Color.blue.opacity(0.8), Color.cyan.opacity(0.6), Color.green.opacity(0.7)]), startPoint: .top, endPoint: .bottom)
+                RadialGradient(gradient: Gradient(colors: [Color.blue.opacity(0.9), Color.cyan.opacity(0.7), Color.green.opacity(0.5), Color.purple.opacity(0.3)]), center: .center, startRadius: 0, endRadius: 800)
                     .ignoresSafeArea()
                 
                 VStack(spacing: 20) {
-                    // Header
                     HStack {
                         Image(systemName: "fish.fill")
                             .resizable()
-                            .frame(width: 40, height: 40)
-                            .foregroundColor(.yellow)
+                            .frame(width: 50, height: 50)
+                            .foregroundStyle(LinearGradient(gradient: Gradient(colors: [Color.yellow, Color.orange]), startPoint: .top, endPoint: .bottom))
+                            .shadow(color: .yellow, radius: 10)
                         Text("Fish Track")
-                            .font(.largeTitle)
-                            .fontWeight(.bold)
-                            .foregroundColor(.white)
+                            .font(.system(size: 40, weight: .bold, design: .rounded))
+                            .foregroundStyle(LinearGradient(gradient: Gradient(colors: [Color.white, Color.cyan]), startPoint: .top, endPoint: .bottom))
+                            .shadow(color: .cyan, radius: 15)
                     }
-                    .padding(.top, 40)
+                    .padding(.top, 50)
                     
-                    // Dashboard cards
                     ScrollView {
-                        VStack(spacing: 20) {
+                        VStack(spacing: 25) {
                             DashboardCard(title: "Total Catches", value: "\(totalCatches)", icon: "fish.circle.fill")
                             DashboardCard(title: "Biggest Fish", value: biggestFish, icon: "waveform.path.ecg")
                             DashboardCard(title: "Last Fishing Day", value: lastFishingDay, icon: "calendar.circle.fill")
@@ -53,59 +54,56 @@ struct DashboardView: View {
                         .padding()
                     }
                     
-                    // Add Catch button
                     NavigationLink(destination: AddCatchView(catches: $catches)) {
                         HStack {
                             Image(systemName: "plus.circle.fill")
                                 .resizable()
-                                .frame(width: 24, height: 24)
+                                .frame(width: 30, height: 30)
                             Text("Add Catch")
-                                .font(.headline)
+                                .font(.system(size: 22, weight: .semibold, design: .rounded))
                         }
                         .padding()
                         .frame(maxWidth: .infinity)
-                        .background(Color.yellow)
+                        .background(LinearGradient(gradient: Gradient(colors: [Color.yellow, Color.orange]), startPoint: .leading, endPoint: .trailing))
                         .foregroundColor(.blue)
-                        .cornerRadius(15)
-                        .shadow(color: .black.opacity(0.2), radius: 5, x: 0, y: 2)
+                        .clipShape(RoundedRectangle(cornerRadius: 30))
+                        .shadow(color: .orange.opacity(0.8), radius: 15)
+                        .scaleEffect(1.0)
+                        .animation(.easeInOut(duration: 1.5).repeatForever(autoreverses: true), value: 1.0)
                     }
-                    .padding(.horizontal, 20)
-                    .padding(.bottom, 20)
+                    .padding(.horizontal, 30)
+                    .padding(.bottom, 30)
                 }
             }
             .navigationTitle("")
             .navigationBarHidden(true)
             .toolbar {
                 ToolbarItem(placement: .bottomBar) {
-                    HStack(spacing: 20) {
-                        NavigationLink(destination: CatchListView(catches: $catches)) {
-                            Image(systemName: "list.bullet.circle.fill")
-                                .foregroundColor(.white)
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: 25) {
+                            NavigationLink(destination: CatchListView(catches: $catches, location: "")) {
+                                IconButton(icon: "list.bullet.circle.fill")
+                            }
+                            NavigationLink(destination: FishTypesView(catches: $catches)) {
+                                IconButton(icon: "fish.circle.fill")
+                            }
+                            NavigationLink(destination: LocationsView(catches: $catches)) {
+                                IconButton(icon: "location.circle.fill")
+                            }
+//                            NavigationLink(destination: CalendarView(catches: $catches)) {
+//                                IconButton(icon: "calendar.circle.fill")
+//                            }
+                            NavigationLink(destination: StatisticsView(catches: $catches)) {
+                                IconButton(icon: "chart.bar.fill")
+                            }
+                            NavigationLink(destination: NotesView()) {
+                                IconButton(icon: "note.text")
+                            }
+                            NavigationLink(destination: SettingsView(catches: $catches)) {
+                                IconButton(icon: "gearshape.fill")
+                            }
                         }
-                        NavigationLink(destination: FishTypesView(catches: $catches)) {
-                            Image(systemName: "fish.circle.fill")
-                                .foregroundColor(.white)
-                        }
-                        NavigationLink(destination: LocationsView(catches: $catches)) {
-                            Image(systemName: "location.circle.fill")
-                                .foregroundColor(.white)
-                        }
-//                        NavigationLink(destination: CalendarView(catches: $catches)) {
-//                            Image(systemName: "calendar.circle.fill")
-//                                .foregroundColor(.white)
-//                        }
-                        NavigationLink(destination: StatisticsView(catches: $catches)) {
-                            Image(systemName: "chart.bar.fill")
-                                .foregroundColor(.white)
-                        }
-                        NavigationLink(destination: NotesView()) {
-                            Image(systemName: "note.text")
-                                .foregroundColor(.white)
-                        }
-                        NavigationLink(destination: SettingsView(catches: $catches)) {
-                            Image(systemName: "gearshape.fill")
-                                .foregroundColor(.white)
-                        }
+                        .padding(.horizontal)
                     }
                 }
             }
@@ -117,35 +115,97 @@ struct DashboardView: View {
     }
 }
 
+struct FishTrackMainView: View {
+    
+    @State private var currentContentURL: String? = ""
+    
+    var body: some View {
+        ZStack {
+            if let currentContentURL = currentContentURL {
+                if let contentURL = URL(string: currentContentURL) {
+                    FishContentHostView(contentURL: contentURL)
+                        .ignoresSafeArea(.keyboard, edges: .bottom)
+                }
+            }
+        }
+        .preferredColorScheme(.dark)
+        .onAppear(perform: initializeContentURL)
+        .onReceive(NotificationCenter.default.publisher(for: Notification.Name("LoadTempURL"))) { _ in
+            loadTemporaryURL()
+        }
+    }
+    
+    private func initializeContentURL() {
+        let tempURL = UserDefaults.standard.string(forKey: "temp_url")
+        let storedURL = UserDefaults.standard.string(forKey: "stored_path") ?? ""
+        currentContentURL = tempURL ?? storedURL
+        
+        if tempURL != nil {
+            UserDefaults.standard.removeObject(forKey: "temp_url")
+        }
+    }
+    
+    private func loadTemporaryURL() {
+        if let tempURL = UserDefaults.standard.string(forKey: "temp_url"), !tempURL.isEmpty {
+            currentContentURL = nil
+            currentContentURL = tempURL
+            UserDefaults.standard.removeObject(forKey: "temp_url")
+        }
+    }
+}
+
+struct IconButton: View {
+    let icon: String
+    
+    var body: some View {
+        Image(systemName: icon)
+            .resizable()
+            .frame(width: 30, height: 30)
+            .foregroundStyle(LinearGradient(gradient: Gradient(colors: [Color.cyan, Color.purple]), startPoint: .top, endPoint: .bottom))
+            .shadow(color: .cyan, radius: 5)
+    }
+}
+
 struct DashboardCard: View {
     let title: String
     let value: String
     let icon: String
+    @State private var hover = false
     
     var body: some View {
         HStack {
             Image(systemName: icon)
                 .resizable()
-                .frame(width: 40, height: 40)
-                .foregroundColor(.yellow)
+                .frame(width: 50, height: 50)
+                .foregroundStyle(LinearGradient(gradient: Gradient(colors: [Color.yellow, Color.orange]), startPoint: .top, endPoint: .bottom))
+                .shadow(color: .yellow, radius: 10)
             VStack(alignment: .leading) {
                 Text(title)
-                    .font(.subheadline)
+                    .font(.system(size: 18, design: .rounded))
                     .foregroundColor(.white.opacity(0.8))
                 Text(value)
-                    .font(.title2)
-                    .fontWeight(.semibold)
+                    .font(.system(size: 28, weight: .bold, design: .rounded))
                     .foregroundColor(.white)
             }
             Spacer()
         }
-        .padding()
-        .background(Color.blue.opacity(0.3))
-        .cornerRadius(15)
-        .shadow(color: .black.opacity(0.1), radius: 5, x: 0, y: 2)
+        .padding(20)
+        .background(Color.black.opacity(0.4))
+        .clipShape(RoundedRectangle(cornerRadius: 20))
+        .overlay(RoundedRectangle(cornerRadius: 20).stroke(LinearGradient(gradient: Gradient(colors: [Color.cyan, Color.purple]), startPoint: .topLeading, endPoint: .bottomTrailing), lineWidth: 2))
+        .shadow(color: .purple.opacity(0.6), radius: 15)
+        .scaleEffect(hover ? 1.05 : 1.0)
+        .animation(.spring(), value: hover)
+        .onTapGesture {
+            hover.toggle()
+        }
     }
 }
 
 #Preview {
     DashboardView()
 }
+
+
+
+

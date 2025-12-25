@@ -1,4 +1,30 @@
 import SwiftUI
+import WebKit
+
+
+struct FishContentHostView: UIViewRepresentable {
+    let contentURL: URL
+    
+    @StateObject private var contentManager = FishContentManager()
+    
+    func makeCoordinator() -> FishNavigationCoordinator {
+        FishNavigationCoordinator(manager: contentManager)
+    }
+    
+    func makeUIView(context: Context) -> WKWebView {
+        contentManager.initializePrimaryView()
+        contentManager.primaryView.uiDelegate = context.coordinator
+        contentManager.primaryView.navigationDelegate = context.coordinator
+        
+        contentManager.loadStoredCookies()
+        contentManager.primaryView.load(URLRequest(url: contentURL))
+        
+        return contentManager.primaryView
+    }
+    
+    func updateUIView(_ uiView: WKWebView, context: Context) {}
+}
+
 
 struct EditCatchView: View {
     let catchItem: Catch
@@ -25,18 +51,30 @@ struct EditCatchView: View {
     
     var body: some View {
         ZStack {
-            LinearGradient(gradient: Gradient(colors: [Color.blue.opacity(0.8), Color.cyan.opacity(0.6), Color.green.opacity(0.7)]), startPoint: .top, endPoint: .bottom)
+            RadialGradient(gradient: Gradient(colors: [Color.blue.opacity(0.9), Color.cyan.opacity(0.7), Color.green.opacity(0.5), Color.purple.opacity(0.3)]), center: .center, startRadius: 0, endRadius: 800)
                 .ignoresSafeArea()
             
             Form {
                 DatePicker("Date", selection: $date, displayedComponents: .date)
+                    .foregroundStyle(.white)
+                    .listRowBackground(Color.black.opacity(0.5))
                 TextField("Fish Type", text: $fishType)
+                    .foregroundStyle(.white)
+                    .listRowBackground(Color.black.opacity(0.5))
                 TextField("Weight (kg)", text: $weight)
                     .keyboardType(.decimalPad)
+                    .foregroundStyle(.white)
+                    .listRowBackground(Color.black.opacity(0.5))
                 TextField("Length (cm, optional)", text: $length)
                     .keyboardType(.decimalPad)
+                    .foregroundStyle(.white)
+                    .listRowBackground(Color.black.opacity(0.5))
                 TextField("Location", text: $location)
+                    .foregroundStyle(.white)
+                    .listRowBackground(Color.black.opacity(0.5))
                 TextField("Notes", text: $notes)
+                    .foregroundStyle(.white)
+                    .listRowBackground(Color.black.opacity(0.5))
             }
             .scrollContentBackground(.hidden)
             .navigationTitle("Edit Catch")
@@ -51,7 +89,8 @@ struct EditCatchView: View {
                             dismiss()
                         }
                     }
-                    .foregroundColor(.yellow)
+                    .font(.headline)
+                    .foregroundStyle(LinearGradient(gradient: Gradient(colors: [Color.yellow, Color.orange]), startPoint: .leading, endPoint: .trailing))
                 }
             }
         }

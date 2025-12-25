@@ -6,33 +6,114 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		8F64C1A32EFC40F20065C3BB /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 8F64C1A22EFC40F20065C3BB /* FirebaseAnalytics */; };
+		8F64C1A52EFC40F20065C3BB /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 8F64C1A42EFC40F20065C3BB /* FirebaseMessaging */; };
+		8F64C1A82EFC411C0065C3BB /* AppsFlyerLib in Frameworks */ = {isa = PBXBuildFile; productRef = 8F64C1A72EFC411C0065C3BB /* AppsFlyerLib */; };
+		8F64C1B82EFC5B0E0065C3BB /* TrackAppNotificationServiceExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 8F64C1B12EFC5B0E0065C3BB /* TrackAppNotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		8F64C1C02EFC5B180065C3BB /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 8F64C1BF2EFC5B180065C3BB /* FirebaseMessaging */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8F64C1B62EFC5B0E0065C3BB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8FD371E52EF057CB009D7590 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8F64C1B02EFC5B0E0065C3BB;
+			remoteInfo = TrackAppNotificationServiceExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8F64C1BD2EFC5B0E0065C3BB /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				8F64C1B82EFC5B0E0065C3BB /* TrackAppNotificationServiceExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		8F64C1B12EFC5B0E0065C3BB /* TrackAppNotificationServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TrackAppNotificationServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FD371ED2EF057CB009D7590 /* FishTrack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FishTrack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		8F64C1AA2EFC5A7D0065C3BB /* Exceptions for "FishTrack" folder in "FishTrack" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 8FD371EC2EF057CB009D7590 /* FishTrack */;
+		};
+		8F64C1BC2EFC5B0E0065C3BB /* Exceptions for "TrackAppNotificationServiceExtension" folder in "TrackAppNotificationServiceExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 8F64C1B02EFC5B0E0065C3BB /* TrackAppNotificationServiceExtension */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		8F64C1B22EFC5B0E0065C3BB /* TrackAppNotificationServiceExtension */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				8F64C1BC2EFC5B0E0065C3BB /* Exceptions for "TrackAppNotificationServiceExtension" folder in "TrackAppNotificationServiceExtension" target */,
+			);
+			path = TrackAppNotificationServiceExtension;
+			sourceTree = "<group>";
+		};
 		8FD371EF2EF057CB009D7590 /* FishTrack */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				8F64C1AA2EFC5A7D0065C3BB /* Exceptions for "FishTrack" folder in "FishTrack" target */,
+			);
 			path = FishTrack;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		8F64C1AE2EFC5B0E0065C3BB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8F64C1C02EFC5B180065C3BB /* FirebaseMessaging in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8FD371EA2EF057CB009D7590 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F64C1A52EFC40F20065C3BB /* FirebaseMessaging in Frameworks */,
+				8F64C1A32EFC40F20065C3BB /* FirebaseAnalytics in Frameworks */,
+				8F64C1A82EFC411C0065C3BB /* AppsFlyerLib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8F64C1BE2EFC5B180065C3BB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		8FD371E42EF057CB009D7590 = {
 			isa = PBXGroup;
 			children = (
 				8FD371EF2EF057CB009D7590 /* FishTrack */,
+				8F64C1B22EFC5B0E0065C3BB /* TrackAppNotificationServiceExtension */,
+				8F64C1BE2EFC5B180065C3BB /* Frameworks */,
 				8FD371EE2EF057CB009D7590 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -41,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				8FD371ED2EF057CB009D7590 /* FishTrack.app */,
+				8F64C1B12EFC5B0E0065C3BB /* TrackAppNotificationServiceExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -48,6 +130,29 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		8F64C1B02EFC5B0E0065C3BB /* TrackAppNotificationServiceExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8F64C1B92EFC5B0E0065C3BB /* Build configuration list for PBXNativeTarget "TrackAppNotificationServiceExtension" */;
+			buildPhases = (
+				8F64C1AD2EFC5B0E0065C3BB /* Sources */,
+				8F64C1AE2EFC5B0E0065C3BB /* Frameworks */,
+				8F64C1AF2EFC5B0E0065C3BB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				8F64C1B22EFC5B0E0065C3BB /* TrackAppNotificationServiceExtension */,
+			);
+			name = TrackAppNotificationServiceExtension;
+			packageProductDependencies = (
+				8F64C1BF2EFC5B180065C3BB /* FirebaseMessaging */,
+			);
+			productName = TrackAppNotificationServiceExtension;
+			productReference = 8F64C1B12EFC5B0E0065C3BB /* TrackAppNotificationServiceExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		8FD371EC2EF057CB009D7590 /* FishTrack */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8FD371F92EF057CD009D7590 /* Build configuration list for PBXNativeTarget "FishTrack" */;
@@ -55,16 +160,21 @@
 				8FD371E92EF057CB009D7590 /* Sources */,
 				8FD371EA2EF057CB009D7590 /* Frameworks */,
 				8FD371EB2EF057CB009D7590 /* Resources */,
+				8F64C1BD2EFC5B0E0065C3BB /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				8F64C1B72EFC5B0E0065C3BB /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				8FD371EF2EF057CB009D7590 /* FishTrack */,
 			);
 			name = FishTrack;
 			packageProductDependencies = (
+				8F64C1A22EFC40F20065C3BB /* FirebaseAnalytics */,
+				8F64C1A42EFC40F20065C3BB /* FirebaseMessaging */,
+				8F64C1A72EFC411C0065C3BB /* AppsFlyerLib */,
 			);
 			productName = FishTrack;
 			productReference = 8FD371ED2EF057CB009D7590 /* FishTrack.app */;
@@ -80,6 +190,9 @@
 				LastSwiftUpdateCheck = 1640;
 				LastUpgradeCheck = 1640;
 				TargetAttributes = {
+					8F64C1B02EFC5B0E0065C3BB = {
+						CreatedOnToolsVersion = 16.4;
+					};
 					8FD371EC2EF057CB009D7590 = {
 						CreatedOnToolsVersion = 16.4;
 					};
@@ -94,17 +207,29 @@
 			);
 			mainGroup = 8FD371E42EF057CB009D7590;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				8F64C1A12EFC40F20065C3BB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				8F64C1A62EFC411C0065C3BB /* XCRemoteSwiftPackageReference "AppsFlyerFramework" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 8FD371EE2EF057CB009D7590 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				8FD371EC2EF057CB009D7590 /* FishTrack */,
+				8F64C1B02EFC5B0E0065C3BB /* TrackAppNotificationServiceExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		8F64C1AF2EFC5B0E0065C3BB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8FD371EB2EF057CB009D7590 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -115,6 +240,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		8F64C1AD2EFC5B0E0065C3BB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8FD371E92EF057CB009D7590 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -124,7 +256,76 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		8F64C1B72EFC5B0E0065C3BB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8F64C1B02EFC5B0E0065C3BB /* TrackAppNotificationServiceExtension */;
+			targetProxy = 8F64C1B62EFC5B0E0065C3BB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		8F64C1BA2EFC5B0E0065C3BB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TrackAppNotificationServiceExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = TrackAppNotificationServiceExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fishingcamptrac.FishTrack.TrackAppNotificationServiceExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		8F64C1BB2EFC5B0E0065C3BB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TrackAppNotificationServiceExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = TrackAppNotificationServiceExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fishingcamptrac.FishTrack.TrackAppNotificationServiceExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		8FD371F72EF057CD009D7590 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -249,8 +450,11 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FishTrack/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Fish Track";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Allow to use.";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Fish Track: Record Catches may collect limited technical identifiers to understand usage patterns and maintain service quality. This data supports internal analytics and feature improvements and is not shared, sold, or used to follow users across apps or third-party services.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -265,7 +469,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 15.3;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fishingcamptrac.FishTrack;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
@@ -289,8 +493,11 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FishTrack/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Fish Track";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Allow to use.";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Fish Track: Record Catches may collect limited technical identifiers to understand usage patterns and maintain service quality. This data supports internal analytics and feature improvements and is not shared, sold, or used to follow users across apps or third-party services.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -305,7 +512,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 15.3;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fishingcamptrac.FishTrack;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
@@ -322,6 +529,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		8F64C1B92EFC5B0E0065C3BB /* Build configuration list for PBXNativeTarget "TrackAppNotificationServiceExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8F64C1BA2EFC5B0E0065C3BB /* Debug */,
+				8F64C1BB2EFC5B0E0065C3BB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		8FD371E82EF057CB009D7590 /* Build configuration list for PBXProject "FishTrack" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -341,6 +557,48 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8F64C1A12EFC40F20065C3BB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.7.0;
+			};
+		};
+		8F64C1A62EFC411C0065C3BB /* XCRemoteSwiftPackageReference "AppsFlyerFramework" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AppsFlyerSDK/AppsFlyerFramework";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.17.8;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8F64C1A22EFC40F20065C3BB /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8F64C1A12EFC40F20065C3BB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		8F64C1A42EFC40F20065C3BB /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8F64C1A12EFC40F20065C3BB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
+		8F64C1A72EFC411C0065C3BB /* AppsFlyerLib */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8F64C1A62EFC411C0065C3BB /* XCRemoteSwiftPackageReference "AppsFlyerFramework" */;
+			productName = AppsFlyerLib;
+		};
+		8F64C1BF2EFC5B180065C3BB /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8F64C1A12EFC40F20065C3BB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8FD371E52EF057CB009D7590 /* Project object */;
 }

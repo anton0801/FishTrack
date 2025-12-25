@@ -6,7 +6,7 @@ struct SettingsView: View {
     
     var body: some View {
         ZStack {
-            LinearGradient(gradient: Gradient(colors: [Color.blue.opacity(0.8), Color.cyan.opacity(0.6), Color.green.opacity(0.7)]), startPoint: .top, endPoint: .bottom)
+            RadialGradient(gradient: Gradient(colors: [Color.blue.opacity(0.9), Color.cyan.opacity(0.7), Color.green.opacity(0.5), Color.purple.opacity(0.3)]), center: .center, startRadius: 0, endRadius: 800)
                 .ignoresSafeArea()
             
             Form {
@@ -14,15 +14,21 @@ struct SettingsView: View {
                     Text("kg").tag("kg")
                     Text("lb").tag("lb")
                 }
+                .pickerStyle(SegmentedPickerStyle())
+                .listRowBackground(Color.black.opacity(0.5))
+                
                 Button("Reset Data") {
                     catches = []
                     UserDefaults.standard.saveCatches([])
                 }
                 .foregroundColor(.red)
-//                NavigationLink("Privacy / About") {
-//                    Text("About Fish Track App")
-//                        .foregroundColor(.white)
-//                }
+                .listRowBackground(Color.black.opacity(0.5))
+                
+                Button {
+                    UIApplication.shared.open(URL(string: "https://fishtraack.com/privacy-policy.html")!)
+                } label: {
+                    Text("Privacy Policy")
+                }
             }
             .scrollContentBackground(.hidden)
             .navigationTitle("Settings")

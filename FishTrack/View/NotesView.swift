@@ -6,15 +6,18 @@ struct NotesView: View {
     
     var body: some View {
         ZStack {
-            LinearGradient(gradient: Gradient(colors: [Color.blue.opacity(0.8), Color.cyan.opacity(0.6), Color.green.opacity(0.7)]), startPoint: .top, endPoint: .bottom)
+            RadialGradient(gradient: Gradient(colors: [Color.blue.opacity(0.9), Color.cyan.opacity(0.7), Color.green.opacity(0.5), Color.purple.opacity(0.3)]), center: .center, startRadius: 0, endRadius: 800)
                 .ignoresSafeArea()
             
             VStack {
                 TextField("Add Note", text: $newNote)
+                    .font(.system(size: 18, design: .rounded))
                     .padding()
-                    .background(Color.white.opacity(0.2))
-                    .cornerRadius(10)
+                    .background(Color.black.opacity(0.5))
+                    .clipShape(RoundedRectangle(cornerRadius: 20))
+                    .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.cyan, lineWidth: 1))
                     .padding(.horizontal)
+                    .shadow(color: .cyan.opacity(0.5), radius: 5)
                 
                 Button("Save Note") {
                     if !newNote.isEmpty {
@@ -23,12 +26,22 @@ struct NotesView: View {
                         UserDefaults.standard.saveNotes(notes)
                     }
                 }
-                .foregroundColor(.yellow)
+                .font(.headline)
+                .padding()
+                .background(LinearGradient(gradient: Gradient(colors: [Color.yellow, Color.orange]), startPoint: .leading, endPoint: .trailing))
+                .foregroundColor(.blue)
+                .clipShape(Capsule())
+                .shadow(color: .orange.opacity(0.8), radius: 10)
                 
                 List {
                     ForEach(notes) { note in
                         Text(note.text)
+                            .font(.system(size: 16, design: .rounded))
                             .foregroundColor(.white)
+                            .padding()
+                            .background(Color.black.opacity(0.4))
+                            .clipShape(RoundedRectangle(cornerRadius: 15))
+                            .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color.purple, lineWidth: 1))
                     }
                     .onDelete { indices in
                         notes.remove(atOffsets: indices)

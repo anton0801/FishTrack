@@ -5,9 +5,9 @@ struct OnboardingView: View {
     @State private var showDashboard = false
     
     let pages = [
-        OnboardingPage(title: "Record Your Catches", description: "Keep track of every fish you catch.", icon: "fish.fill"),
-        OnboardingPage(title: "Note Fish and Weight", description: "Log details like type, weight, and more.", icon: "scale.mass.fill"),
-        OnboardingPage(title: "Analyze Your Fishing", description: "View stats and improve your skills.", icon: "chart.bar.fill")
+        OnboardingPage(title: "Record Your Catches", description: "Keep track of every fish you catch with futuristic precision.", icon: "fish.fill"),
+        OnboardingPage(title: "Note Fish and Weight", description: "Log details like type, weight, and more in a neon glow.", icon: "scale.mass.fill"),
+        OnboardingPage(title: "Analyze Your Fishing", description: "View stats and improve your skills with holographic insights.", icon: "chart.bar.fill")
     ]
     
     var body: some View {
@@ -15,7 +15,7 @@ struct OnboardingView: View {
             DashboardView()
         } else {
             ZStack {
-                LinearGradient(gradient: Gradient(colors: [Color.blue.opacity(0.8), Color.cyan.opacity(0.6), Color.green.opacity(0.7)]), startPoint: .top, endPoint: .bottom)
+                RadialGradient(gradient: Gradient(colors: [Color.blue.opacity(0.9), Color.cyan.opacity(0.7), Color.green.opacity(0.5), Color.purple.opacity(0.3)]), center: .center, startRadius: 0, endRadius: 800)
                     .ignoresSafeArea()
                 
                 TabView(selection: $currentPage) {
@@ -31,24 +31,43 @@ struct OnboardingView: View {
                     Spacer()
                     HStack {
                         Button("Skip") {
-                            showDashboard = true
+                            withAnimation(.spring()) {
+                                showDashboard = true
+                            }
                         }
+                        .font(.headline)
+                        .padding()
+                        .background(Color.black.opacity(0.5))
                         .foregroundColor(.white)
+                        .clipShape(Capsule())
+                        .shadow(color: .cyan, radius: 5)
                         
                         Spacer()
                         
                         if currentPage < pages.count - 1 {
                             Button("Next") {
-                                withAnimation {
+                                withAnimation(.easeInOut) {
                                     currentPage += 1
                                 }
                             }
-                            .foregroundColor(.yellow)
+                            .font(.headline)
+                            .padding()
+                            .background(LinearGradient(gradient: Gradient(colors: [Color.yellow, Color.orange]), startPoint: .leading, endPoint: .trailing))
+                            .foregroundColor(.blue)
+                            .clipShape(Capsule())
+                            .shadow(color: .yellow.opacity(0.8), radius: 10)
                         } else {
                             Button("Start") {
-                                showDashboard = true
+                                withAnimation(.spring()) {
+                                    showDashboard = true
+                                }
                             }
-                            .foregroundColor(.yellow)
+                            .font(.headline)
+                            .padding()
+                            .background(LinearGradient(gradient: Gradient(colors: [Color.yellow, Color.orange]), startPoint: .leading, endPoint: .trailing))
+                            .foregroundColor(.blue)
+                            .clipShape(Capsule())
+                            .shadow(color: .yellow.opacity(0.8), radius: 10)
                         }
                     }
                     .padding()
@@ -67,19 +86,23 @@ struct OnboardingPage: View {
         VStack {
             Image(systemName: icon)
                 .resizable()
-                .frame(width: 100, height: 100)
-                .foregroundColor(.yellow)
+                .frame(width: 120, height: 120)
+                .foregroundStyle(LinearGradient(gradient: Gradient(colors: [Color.cyan, Color.purple]), startPoint: .top, endPoint: .bottom))
+                .shadow(color: .cyan, radius: 15)
             Text(title)
-                .font(.title)
+                .font(.system(size: 32, weight: .bold, design: .rounded))
                 .foregroundColor(.white)
                 .padding()
             Text(description)
-                .font(.subheadline)
-                .foregroundColor(.white.opacity(0.8))
+                .font(.system(size: 18, design: .rounded))
+                .foregroundColor(.white.opacity(0.9))
                 .multilineTextAlignment(.center)
                 .padding()
         }
         .padding()
+        .background(Color.black.opacity(0.3))
+        .clipShape(RoundedRectangle(cornerRadius: 25))
+        .shadow(color: .purple.opacity(0.5), radius: 20)
     }
 }
 
